@@ -247,6 +247,17 @@ var PLATFORM_PARAMS = {
   },
   'kim1': {
   },
+  'snes': { //TODO
+    define: ['__NES__'],
+    cfgfile: 'neslib2.cfg',
+    libargs: ['crt0.o', 'nes.lib', 'neslib2.lib',
+      '-D', 'NES_MAPPER=0', // NROM
+      '-D', 'NES_PRG_BANKS=2', // 2 16K PRG banks
+      '-D', 'NES_CHR_BANKS=1', // 1 CHR bank
+      '-D', 'NES_MIRRORING=0', // horizontal mirroring
+      ],
+    extra_link_files: ['crt0.o', 'neslib2.lib', 'neslib2.cfg', 'nesbanked.cfg'],
+  }
 };
 
 PLATFORM_PARAMS['sms-sms-libcv'] = PLATFORM_PARAMS['sms-sg1000-libcv'];
@@ -2266,6 +2277,8 @@ var TOOL_PRELOADFS = {
   'ca65-c64': '65-c64',
   'cc65-nes': '65-nes',
   'ca65-nes': '65-nes',
+  'ca65-snes': '65-snes',
+  'cc65-snes': '65-snes',
   'cc65-atari8': '65-atari8',
   'ca65-atari8': '65-atari8',
   'cc65-vector': '65-sim6502',
